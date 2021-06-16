@@ -1,5 +1,7 @@
 package com.nortal.demo.users;
 
 public interface User {
-	String getName();
+	default String getName(){
+		return this.getClass().getSimpleName();
+	};
 }
