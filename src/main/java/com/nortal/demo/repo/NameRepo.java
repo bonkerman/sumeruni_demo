@@ -1,18 +1,19 @@
 package com.nortal.demo.repo;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import lombok.extern.log4j.Log4j2;
+import com.nortal.demo.users.BaseUser;
 
 @Service
 @Log4j2
 public class NameRepo implements Repository {
 
-	private static List<String> names = new ArrayList<>();
+	private static final List<String> names = new ArrayList<>();
 
 	@Override
 	public void save(final String name) {
@@ -35,8 +36,8 @@ public class NameRepo implements Repository {
 	}
 
 	@Override
-	public Collection<String> getAll() {
+	public List<BaseUser> getAll() {
 		log.info("All names are retrieved");
-		return names;
+		return names.stream().map(BaseUser::new).collect(Collectors.toList());
 	}
 }
