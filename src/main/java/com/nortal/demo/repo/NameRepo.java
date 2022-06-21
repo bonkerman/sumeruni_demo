@@ -1,6 +1,8 @@
 package com.nortal.demo.repo;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,11 @@ import com.nortal.demo.users.BaseUser;
 public class NameRepo implements Repository {
 
 	private static final List<String> names = new ArrayList<>();
+
+	@PostConstruct
+	public void init() {
+		log.info("NameRepo has started;");
+	}
 
 	@Override
 	public void save(final String name) {
